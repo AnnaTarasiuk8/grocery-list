@@ -1,0 +1,22 @@
+<section class="grocery-list-app">
+  <header class="header">
+    <h1>Grocery List</h1>
+    <input class="new-product" placeholder="What needs to buy?" autofocus="" [(ngModel)]="newProduct.product"
+           (keyup.enter)="addProduct()">
+  </header>
+
+  <section class="main" *ngIf="products.length > 0">
+    <ul class="product-list">
+      <li *ngFor="let item of products" [class.completed]="item.complete">
+        <div class="view">
+          <input class="toggle" type="checkbox" (click)="toggleListComplete(item)" [checked]="item.complete">
+          <label>{{item.product}}</label>
+          <button class="destroy" (click)="removeProduct(item)"></button>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <footer class="footer" *ngIf="products.length > 0">
+    <span class="product-count"><strong>{{products.length}}</strong> {{products.length == 1 ? 'item' : 'items'}} left</span>
+  </footer>
+</section>
